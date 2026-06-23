@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mini_school_app/screens/login/login_screen.dart';
+import 'package:mini_school_app/screens/student_list/student_list_screen.dart';
 
 /// App route names
 class Routes {

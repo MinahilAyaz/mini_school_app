@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mini_school_app/screens/profile/profile_screen.dart';
+import 'package:mini_school_app/screens/student_detail/student_detail_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:mini_school_app/config/app_theme.dart';
 import 'package:mini_school_app/viewmodels/auth_viewmodel.dart';
@@ -80,9 +82,9 @@ class _StudentListScreenState extends State<StudentListScreen> {
               IconButton(icon: Icon(Icons.search), onPressed: _startSearch),
             if (!_isSearching)
               IconButton(
-                icon: Icon(Icons.logout),
-                onPressed: () => _handleLogout(context),
-                tooltip: 'Logout',
+                icon: Icon(Icons.person_outline),
+                onPressed: () => _navigateToProfile(context),
+                tooltip: 'Profile',
               ),
           ],
         ),
@@ -223,4 +225,11 @@ class _StudentListScreenState extends State<StudentListScreen> {
       ),
     );
   }
+}
+
+/// Navigate to profile screen
+void _navigateToProfile(BuildContext context) {
+  Navigator.of(
+    context,
+  ).push(MaterialPageRoute(builder: (context) => ProfileScreen()));
 }

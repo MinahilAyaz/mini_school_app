@@ -106,7 +106,6 @@ ios/Flutter/flutter_export_environment.sh
 *.swo
 *~
 .DS_Store
-profile
 
 # Environment
 .env

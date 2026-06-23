@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mini_school_app/screens/login/login_screen.dart';
+import 'package:mini_school_app/screens/student_list/student_list_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
