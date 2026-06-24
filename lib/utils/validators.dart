@@ -4,18 +4,12 @@
 ///
 /// Returns error message if invalid, null if valid
 ///
-/// Example:
-/// ```
-/// final error = Validators.validateEmail('test@example.com');
-/// if (error != null) print(error); // Shows error
-/// ```
 class Validators {
   Validators._(); // Private constructor
 
   // ============ Email Validation ============
 
   /// Validate email format
-  ///
   /// Returns null if valid, error message if invalid
   static String? validateEmail(String? email) {
     if (email == null || email.isEmpty) {
@@ -40,7 +34,6 @@ class Validators {
   /// Requirements:
   /// - At least 4 characters
   /// - At least one number (optional for simplicity)
-  ///
   /// Returns null if valid, error message if invalid
   static String? validatePassword(String? password) {
     if (password == null || password.isEmpty) {
@@ -50,12 +43,6 @@ class Validators {
     if (password.length < 4) {
       return 'Password must be at least 4 characters';
     }
-
-    // Optional: Require at least one number
-    // if (!password.contains(RegExp(r'\d'))) {
-    //   return 'Password must contain at least one number';
-    // }
-
     return null;
   }
 
@@ -67,7 +54,6 @@ class Validators {
   /// - Not empty
   /// - At least 2 characters
   /// - Only letters, spaces, and hyphens
-  ///
   /// Returns null if valid, error message if invalid
   static String? validateName(String? name) {
     if (name == null || name.isEmpty) {
@@ -116,7 +102,6 @@ class Validators {
   // ============ URL Validation ============
 
   /// Validate URL format
-  ///
   /// Returns null if valid, error message if invalid
   static String? validateUrl(String? url) {
     if (url == null || url.isEmpty) {

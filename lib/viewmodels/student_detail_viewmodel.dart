@@ -47,12 +47,6 @@ class StudentDetailViewModel extends ChangeNotifier {
   /// 3. Call studentService.getStudentDetail(id)
   /// 4. If success: save student
   /// 5. If error: set error message
-  ///
-  /// Example:
-  /// ```
-  /// await viewModel.loadStudentDetail(1);
-  /// print(viewModel.student?.name); // Student name
-  /// ```
   Future<void> loadStudentDetail(int studentId) async {
     try {
       if (studentId <= 0) {

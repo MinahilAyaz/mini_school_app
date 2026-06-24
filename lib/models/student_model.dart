@@ -18,7 +18,6 @@ class Student {
     this.address,
   });
 
-  /// Convert JSON from API to Student object
   /// Using JSONPlaceholder API structure
   factory Student.fromJson(Map<String, dynamic> json) {
     return Student(

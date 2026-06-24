@@ -4,7 +4,6 @@ import 'package:mini_school_app/screens/student_list/student_list_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-
 import 'config/app_theme.dart';
 import 'config/routes.dart';
 import 'services/api_service.dart';
@@ -26,7 +25,6 @@ void main() async {
 }
 
 /// Root application widget
-///
 /// Responsibilities:
 /// - Setup Provider with all services and viewmodels
 /// - Configure themes (light and dark)
@@ -107,7 +105,9 @@ class MyApp extends StatelessWidget {
             // ============ Themes ============
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,
-            themeMode: profileViewModel.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+            themeMode: profileViewModel.isDarkMode
+                ? ThemeMode.dark
+                : ThemeMode.light,
 
             // ============ Routing ============
             onGenerateRoute: RouteGenerator.generateRoute,

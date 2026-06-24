@@ -1,21 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mini_school_app/config/app_theme.dart';
 
-/// Empty state widget
-///
-/// Shows when there's no data to display
-///
-/// Usage:
-/// ```
-/// if (students.isEmpty && !isLoading) {
-///   EmptyStateWidget(
-///     icon: Icons.person_outline,
-///     title: 'No Students',
-///     message: 'No students found. Try refreshing.',
-///     onRetry: () => viewModel.fetchStudents(),
-///   );
-/// }
-/// ```
 class EmptyStateWidget extends StatelessWidget {
   /// Icon to display
   final IconData icon;
@@ -90,7 +75,6 @@ class EmptyStateWidget extends StatelessWidget {
 }
 
 /// Empty state for search results
-///
 /// Used when search returns no results
 class SearchEmptyStateWidget extends StatelessWidget {
   final String query;

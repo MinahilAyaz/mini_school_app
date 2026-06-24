@@ -6,7 +6,6 @@ import 'package:mini_school_app/utils/exceptions.dart';
 import 'api_service.dart';
 
 /// Service for handling authentication (login/logout)
-///
 /// Responsibilities:
 /// - Login with email and password
 /// - Logout and clear session
@@ -41,15 +40,7 @@ class AuthService {
   /// - AuthException: If credentials invalid
   /// - NetworkException: If no internet
   /// - ServerException: If server error
-  ///
-  /// Example:
-  /// ```
-  /// final user = await authService.login('test@example.com', 'password');
-  /// print(user.token); // Success!
-  /// ```
   /// Login with email and password
-  /// Login with email and password
-  ///
   /// dummyjson.com API expects username and password
   /// Login with username and password
   Future<User> login({required String email, required String password}) async {
@@ -125,11 +116,6 @@ class AuthService {
   /// - Clears stored token
   /// - Clears stored user data
   /// - Clears token from ApiService
-  ///
-  /// Example:
-  /// ```
-  /// await authService.logout();
-  /// ```
   Future<void> logout() async {
     try {
       await _prefs.remove(AppConstants.tokenKey);

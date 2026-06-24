@@ -49,21 +49,12 @@ class AuthViewModel extends ChangeNotifier {
   // ============ Public Methods ============
 
   /// Login with email and password
-  ///
   /// Steps:
   /// 1. Set isLoading = true (show loading indicator)
   /// 2. Call authService.login()
   /// 3. If success: save user, set isLoggedIn = true
   /// 4. If error: set appropriate error message
   /// 5. Always: set isLoading = false at the end
-  ///
-  /// Example:
-  /// ```
-  /// await viewModel.login('test@example.com', 'password123');
-  /// if (viewModel.isLoggedIn) {
-  ///   // Navigate to home
-  /// }
-  /// ```
   Future<void> login({required String email, required String password}) async {
     try {
       // Clear previous error
@@ -105,18 +96,11 @@ class AuthViewModel extends ChangeNotifier {
   }
 
   /// Logout and clear session
-  ///
   /// Steps:
   /// 1. Set isLoading = true
   /// 2. Call authService.logout()
   /// 3. Clear user data
   /// 4. Set isLoggedIn = false
-  ///
-  /// Example:
-  /// ```
-  /// await viewModel.logout();
-  /// // Navigate back to login
-  /// ```
   Future<void> logout() async {
     try {
       _isLoading = true;

@@ -1,15 +1,6 @@
 import 'package:flutter/material.dart';
 
 /// Loading indicator widget
-///
-/// Shows a centered loading spinner with optional message
-///
-/// Usage:
-/// ```
-/// if (isLoading) {
-///   LoadingWidget(message: 'Loading students...');
-/// }
-/// ```
 class LoadingWidget extends StatelessWidget {
   /// Optional message to display below spinner
   final String? message;
@@ -46,13 +37,6 @@ class LoadingWidget extends StatelessWidget {
 }
 
 /// Centered loading widget for full screen
-///
-/// Usage:
-/// ```
-/// if (isLoading && students.isEmpty) {
-///   CenteredLoadingWidget();
-/// }
-/// ```
 class CenteredLoadingWidget extends StatelessWidget {
   final String? message;
 

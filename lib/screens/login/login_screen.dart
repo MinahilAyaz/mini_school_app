@@ -5,7 +5,6 @@ import 'package:mini_school_app/config/app_theme.dart';
 import 'package:mini_school_app/viewmodels/auth_viewmodel.dart';
 
 /// Login Screen
-///
 /// Features:
 /// - Email and password input with validation
 /// - Login button with loading indicator
@@ -110,83 +109,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   key: _formKey,
                   child: Column(
                     children: [
-                      // ============ Email Field ============
-                      // TextFormField(
-                      //   controller: _emailController,
-                      //   decoration: InputDecoration(
-                      //     hintText: 'Username',
-                      //     prefixIcon: Icon(Icons.email_outlined),
-                      //     labelText: 'Email',
-                      //   ),
-                      //   keyboardType: TextInputType.emailAddress,
-                      //   enabled: !authViewModel.isLoading,
-                      //   validator: (value) {
-                      //     if (value?.isEmpty ?? true) {
-                      //       return 'Email is required';
-                      //     }
-                      //     // if (!_isValidEmail(value!)) {
-                      //     //   return 'Please enter a valid email';
-                      //     // }
-                      //     return null;
-                      //   },
-                      //   onChanged: (_) {
-                      //     // Clear error when user starts typing
-                      //     if (authViewModel.errorMessage != null) {
-                      //       authViewModel.clearError();
-                      //     }
-                      //   },
-                      // ),
-
-                      //SizedBox(height: 16),
-
-                      // ============ Password Field ============
-                      // TextFormField(
-                      //   controller: _passwordController,
-                      //   decoration: InputDecoration(
-                      //     hintText: 'Username',
-                      //     prefixIcon: Icon(Icons.lock_outlined),
-                      //     labelText: 'Password',
-                      //     suffixIcon: IconButton(
-                      //       icon: Icon(
-                      //         _obscurePassword
-                      //             ? Icons.visibility_outlined
-                      //             : Icons.visibility_off_outlined,
-                      //       ),
-                      //       onPressed: () {
-                      //         setState(() {
-                      //           _obscurePassword = !_obscurePassword;
-                      //         });
-                      //       },
-                      //     ),
-                      //   ),
-                      //   obscureText: _obscurePassword,
-                      //   enabled: !authViewModel.isLoading,
-
-                      //   // validator: (value) {
-                      //   //   if (value?.isEmpty ?? true) {
-                      //   //     return 'Password is required';
-                      //   //   }
-                      //   //   if ((value?.length ?? 0) < 4) {
-                      //   //     return 'Password must be at least 4 characters';
-                      //   //   }
-                      //   //   return null;
-                      //   // },
-                      //   validator: (value) {
-                      //     if (value?.isEmpty ?? true) {
-                      //       return 'Username is required';
-                      //     }
-                      //     // Don't validate email format since we're using username
-                      //     return null;
-                      //   },
-
-                      //   onChanged: (_) {
-                      //     // Clear error when user starts typing
-                      //     if (authViewModel.errorMessage != null) {
-                      //       authViewModel.clearError();
-                      //     }
-                      //   },
-                      // ),
-
                       // ============ Username Field ============
                       TextFormField(
                         controller: _emailController,
@@ -314,6 +236,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(height: 24),
 
                       // ============ Test Credentials Button ============
+
                       // Remove this in production
                       Container(
                         padding: EdgeInsets.all(12),
@@ -379,16 +302,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   // ============ Private Methods ============
 
-  /// Validate email format
-  // bool _isValidEmail(String email) {
-  //   final emailRegex = RegExp(
-  //     r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
-  //   );
-  //   return emailRegex.hasMatch(email);
-  // }
-
   /// Handle login button press
-  ///
   /// Steps:
   /// 1. Validate form
   /// 2. Call viewModel.login()
@@ -404,9 +318,6 @@ class _LoginScreenState extends State<LoginScreen> {
       email: _emailController.text.trim(),
       password: _passwordController.text,
     );
-
-    // Success message or error is handled by viewModel state
-    // Auto-navigation happens in Consumer above
   }
 
   /// Fill email and password with test credentials

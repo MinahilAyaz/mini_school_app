@@ -16,14 +16,6 @@ abstract class AppException implements Exception {
 /// - No internet connection
 /// - Connection timeout
 /// - Network unreachable
-///
-/// Example:
-/// ```
-/// throw NetworkException(
-///   message: 'No internet connection',
-///   code: 'NO_INTERNET',
-/// );
-/// ```
 class NetworkException extends AppException {
   NetworkException({
     required String message,
@@ -46,14 +38,6 @@ class NetworkException extends AppException {
 /// - Token expired
 /// - Unauthorized access (401)
 /// - Credentials mismatch
-///
-/// Example:
-/// ```
-/// throw AuthException(
-///   message: 'Invalid email or password',
-///   code: 'INVALID_CREDENTIALS',
-/// );
-/// ```
 class AuthException extends AppException {
   AuthException({
     required String message,
@@ -76,14 +60,6 @@ class AuthException extends AppException {
 /// - Password too short
 /// - Required field empty
 /// - Phone number invalid
-///
-/// Example:
-/// ```
-/// throw ValidationException(
-///   message: 'Please enter a valid email',
-///   code: 'INVALID_EMAIL',
-/// );
-/// ```
 class ValidationException extends AppException {
   ValidationException({
     required String message,
@@ -106,14 +82,6 @@ class ValidationException extends AppException {
 /// - HTTP 502 Bad Gateway
 /// - HTTP 503 Service Unavailable
 /// - Server returned error status code
-///
-/// Example:
-/// ```
-/// throw ServerException(
-///   message: 'Server is temporarily unavailable',
-///   code: 'SERVER_ERROR_500',
-/// );
-/// ```
 class ServerException extends AppException {
   final int? statusCode;
 
@@ -138,14 +106,6 @@ class ServerException extends AppException {
 /// - Invalid JSON response
 /// - Unexpected response format
 /// - Missing required fields in response
-///
-/// Example:
-/// ```
-/// throw ParsingException(
-///   message: 'Failed to parse response data',
-///   code: 'INVALID_JSON',
-/// );
-/// ```
 class ParsingException extends AppException {
   ParsingException({
     required String message,
@@ -166,14 +126,6 @@ class ParsingException extends AppException {
 /// When to use:
 /// - Unexpected error that doesn't fit other categories
 /// - Fallback for unknown exceptions
-///
-/// Example:
-/// ```
-/// throw UnknownException(
-///   message: 'Something unexpected happened',
-///   originalException: e,
-/// );
-/// ```
 class UnknownException extends AppException {
   UnknownException({
     required String message,

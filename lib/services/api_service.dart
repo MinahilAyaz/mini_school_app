@@ -6,7 +6,6 @@ import 'package:mini_school_app/config/app_constants.dart';
 import 'package:mini_school_app/utils/exceptions.dart';
 
 /// Base API service handling all HTTP requests
-///
 /// Responsibilities:
 /// - Making HTTP requests (GET, POST, etc)
 /// - Error handling (converts exceptions to custom types)
@@ -44,9 +43,6 @@ class ApiService {
   // ============ HTTP Methods ============
 
   /// Perform GET request
-  ///
-  /// Example:
-  /// ```
   /// final response = await apiService.get('/users');
   /// final users = response.map((u) => User.fromJson(u)).toList();
   /// ```
@@ -74,15 +70,6 @@ class ApiService {
   }
 
   /// Perform POST request
-  ///
-  /// Example:
-  /// ```
-  /// final response = await apiService.post(
-  ///   '/login',
-  ///   body: {'email': 'test@example.com', 'password': '123456'},
-  /// );
-  /// final token = response['token'];
-  /// ```
   Future<dynamic> post(
     String endpoint, {
     required Map<String, dynamic> body,
@@ -157,7 +144,6 @@ class ApiService {
   // ============ Private Helper Methods ============
 
   /// Build request headers
-  ///
   /// Includes:
   /// - Content-Type: application/json
   /// - Authorization: Bearer token (if authenticated)
@@ -176,7 +162,6 @@ class ApiService {
   }
 
   /// Handle HTTP response
-  ///
   /// - 200-299: Parse and return response
   /// - 400-499: Throw AuthException or ValidationException
   /// - 500-599: Throw ServerException
@@ -249,7 +234,6 @@ class ApiService {
   }
 
   /// Handle exceptions from HTTP calls
-  ///
   /// Converts various exception types to custom exceptions:
   /// - SocketException → NetworkException
   /// - TimeoutException → NetworkException

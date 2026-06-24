@@ -25,12 +25,6 @@ class StudentService {
   /// - NetworkException: No internet or connection error
   /// - ServerException: 500+ error
   /// - ParsingException: Invalid response format
-  ///
-  /// Example:
-  /// ```
-  /// final students = await studentService.getStudents();
-  /// print(students.length); // 10 students
-  /// ```
   Future<List<Student>> getStudents() async {
     try {
       final response = await _apiService.get(AppConstants.getStudentsEndpoint);
@@ -71,12 +65,6 @@ class StudentService {
   /// - NetworkException: No internet or connection error
   /// - ServerException: 500+ error
   /// - ParsingException: Invalid response format
-  ///
-  /// Example:
-  /// ```
-  /// final student = await studentService.getStudentDetail(1);
-  /// print(student.name); // Student name
-  /// ```
   Future<Student> getStudentDetail(int id) async {
     // Validate input
     if (id <= 0) {
@@ -112,11 +100,6 @@ class StudentService {
   /// - query: Search term (case-insensitive)
   ///
   /// Returns: Filtered list of students
-  ///
-  /// Example:
-  /// ```
-  /// final results = await studentService.searchStudents('John');
-  /// ```
   Future<List<Student>> searchStudents(String query) async {
     try {
       if (query.isEmpty) {

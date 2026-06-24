@@ -2,18 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mini_school_app/config/app_theme.dart';
 
 /// Error display widget
-///
-/// Shows error message with icon and optional retry button
-///
-/// Usage:
-/// ```
-/// if (errorMessage != null) {
-///   ErrorDisplayWidget(
-///     message: errorMessage,
-///     onRetry: () => viewModel.retryLoad(),
-///   );
-/// }
-/// ```
 class ErrorDisplayWidget extends StatelessWidget {
   /// Error message to display
   final String message;
@@ -83,19 +71,6 @@ class ErrorDisplayWidget extends StatelessWidget {
   }
 }
 
-/// Error banner widget for top of screen
-///
-/// Dismissible error message shown at top
-///
-/// Usage:
-/// ```
-/// if (errorMessage != null) {
-///   ErrorBannerWidget(
-///     message: errorMessage,
-///     onDismiss: () => viewModel.clearError(),
-///   );
-/// }
-/// ```
 class ErrorBannerWidget extends StatelessWidget {
   final String message;
   final VoidCallback? onDismiss;

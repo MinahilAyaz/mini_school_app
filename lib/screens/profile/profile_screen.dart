@@ -6,7 +6,6 @@ import 'package:mini_school_app/viewmodels/auth_viewmodel.dart';
 import 'package:mini_school_app/viewmodels/profile_viewmodel.dart';
 
 /// Profile / Settings Screen
-///
 /// Features:
 /// - Display user information
 /// - Logout functionality
@@ -404,10 +403,9 @@ class ProfileScreen extends StatelessWidget {
                       backgroundColor: AppColors.success,
                     ),
                   );
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                    Routes.login,
-                    (route) => false,
-                  );
+                  Navigator.of(
+                    context,
+                  ).pushNamedAndRemoveUntil(Routes.login, (route) => false);
                 }
               } else {
                 if (context.mounted) {

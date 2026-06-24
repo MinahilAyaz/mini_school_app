@@ -40,8 +40,8 @@ class ProfileViewModel extends ChangeNotifier {
   ProfileViewModel({
     required AuthService authService,
     required SharedPreferences prefs,
-  })  : _authService = authService,
-        _prefs = prefs {
+  }) : _authService = authService,
+       _prefs = prefs {
     _loadThemePreference();
   }
 
@@ -67,12 +67,6 @@ class ProfileViewModel extends ChangeNotifier {
   /// 2. Call authService.logout()
   /// 3. If success: caller should navigate to login
   /// 4. If error: show error message
-  ///
-  /// Example:
-  /// ```
-  /// await viewModel.logout();
-  /// // Navigate to login screen
-  /// ```
   Future<void> logout() async {
     try {
       _errorMessage = null;

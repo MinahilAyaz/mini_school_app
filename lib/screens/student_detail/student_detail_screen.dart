@@ -8,7 +8,6 @@ import 'package:mini_school_app/widgets/error_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// Student Detail Screen
-///
 /// Features:
 /// - Display full student information
 /// - Click to open email/phone/website

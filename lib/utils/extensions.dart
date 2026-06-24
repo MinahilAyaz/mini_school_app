@@ -5,22 +5,12 @@ import 'package:intl/intl.dart';
 /// String extension methods
 extension StringExtension on String {
   /// Capitalize first letter of string
-  ///
-  /// Example:
-  /// ```
-  /// 'hello'.capitalize() // 'Hello'
-  /// ```
   String capitalize() {
     if (isEmpty) return this;
     return '${this[0].toUpperCase()}${substring(1)}';
   }
 
   /// Check if string is a valid email
-  ///
-  /// Example:
-  /// ```
-  /// 'test@example.com'.isValidEmail() // true
-  /// ```
   bool isValidEmail() {
     final emailRegex = RegExp(
       r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
@@ -29,33 +19,17 @@ extension StringExtension on String {
   }
 
   /// Check if string contains only digits
-  ///
-  /// Example:
-  /// ```
-  /// '12345'.isNumeric() // true
-  /// '123a5'.isNumeric() // false
-  /// ```
   bool isNumeric() {
     return RegExp(r'^[0-9]+$').hasMatch(this);
   }
 
   /// Truncate string to max length with ellipsis
-  ///
-  /// Example:
-  /// ```
-  /// 'Hello World'.truncate(8) // 'Hello...'
-  /// ```
   String truncate(int maxLength, {String ellipsis = '...'}) {
     if (length <= maxLength) return this;
     return '${substring(0, maxLength - ellipsis.length)}$ellipsis';
   }
 
   /// Remove all whitespace from string
-  ///
-  /// Example:
-  /// ```
-  /// 'hello world'.removeWhitespace() // 'helloworld'
-  /// ```
   String removeWhitespace() {
     return replaceAll(' ', '');
   }
@@ -69,12 +43,6 @@ extension StringExtension on String {
   }
 
   /// Add http:// to URL if not present
-  ///
-  /// Example:
-  /// ```
-  /// 'example.com'.toUrl() // 'http://example.com'
-  /// 'https://example.com'.toUrl() // 'https://example.com'
-  /// ```
   String toUrl() {
     if (startsWith('http://') || startsWith('https://')) {
       return this;
@@ -89,30 +57,16 @@ extension StringExtension on String {
 extension DateTimeExtension on DateTime {
   /// Format DateTime as readable date
   ///
-  /// Example:
-  /// ```
-  /// DateTime.now().formattedDate() // 'Jan 15, 2024'
-  /// ```
   String formattedDate() {
     return DateFormat('MMM dd, yyyy').format(this);
   }
 
   /// Format DateTime as readable date and time
-  ///
-  /// Example:
-  /// ```
-  /// DateTime.now().formattedDateTime() // 'Jan 15, 2024 2:30 PM'
-  /// ```
   String formattedDateTime() {
     return DateFormat('MMM dd, yyyy h:mm a').format(this);
   }
 
   /// Format DateTime as time only
-  ///
-  /// Example:
-  /// ```
-  /// DateTime.now().formattedTime() // '2:30 PM'
-  /// ```
   String formattedTime() {
     return DateFormat('h:mm a').format(this);
   }
@@ -140,11 +94,6 @@ extension DateTimeExtension on DateTime {
   }
 
   /// Get days difference from now
-  ///
-  /// Example:
-  /// ```
-  /// DateTime.now().subtract(Duration(days: 5)).daysAgo() // 5
-  /// ```
   int daysAgo() {
     final now = DateTime.now();
     final difference = now.difference(this).inDays;
@@ -157,21 +106,11 @@ extension DateTimeExtension on DateTime {
 /// List extension methods
 extension ListExtension<T> on List<T> {
   /// Check if list is empty
-  ///
-  /// Example:
-  /// ```
-  /// [].isEmpty // true
-  /// [1,2,3].isNotEmpty // true
-  /// ```
+
   bool get isNotEmpty => length > 0;
 
   /// Get first element or null
-  ///
-  /// Example:
-  /// ```
-  /// [1,2,3].firstOrNull() // 1
-  /// [].firstOrNull() // null
-  /// ```
+
   T? firstOrNull() {
     return isEmpty ? null : first;
   }
@@ -182,21 +121,11 @@ extension ListExtension<T> on List<T> {
   }
 
   /// Duplicate each element
-  ///
-  /// Example:
-  /// ```
-  /// [1,2,3].duplicate() // [1,2,3,1,2,3]
-  /// ```
   List<T> duplicate() {
     return [...this, ...this];
   }
 
   /// Get unique elements
-  ///
-  /// Example:
-  /// ```
-  /// [1,2,2,3,3,3].unique() // [1,2,3]
-  /// ```
   List<T> unique() {
     return toSet().toList();
   }
@@ -207,12 +136,7 @@ extension ListExtension<T> on List<T> {
 /// Nullable extension methods
 extension NullableExtension<T> on T? {
   /// Execute function if not null
-  ///
-  /// Example:
-  /// ```
-  /// String? name = 'John';
-  /// name?.let((n) => print('Hello $n'));
-  /// ```
+
   R? let<R>(R Function(T value) fn) {
     return this == null ? null : fn(this as T);
   }

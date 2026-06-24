@@ -14,8 +14,6 @@ class AppConstants {
   // ============ Authentication Endpoints ============
 
   /// Login endpoint - POST request
-  /// Request body: { "email": "...", "password": "..." }
-  /// Response: { "token": "..." } or { "error": "..." }
   static const String loginEndpoint = '$authBaseUrl/auth/login';
 
   // ============ Student Endpoints ============

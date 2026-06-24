@@ -11,7 +11,6 @@ import 'package:mini_school_app/widgets/empty_state_widget.dart';
 import 'package:mini_school_app/widgets/student_card.dart';
 
 /// Student List Screen
-///
 /// Features:
 /// - Display list of students in cards
 /// - Pull-to-refresh to reload

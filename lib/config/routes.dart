@@ -15,11 +15,6 @@ class Routes {
 /// Route generator for named routes
 class RouteGenerator {
   /// Generate routes based on route name
-  ///
-  /// Example:
-  /// ```
-  /// Navigator.of(context).pushNamed(Routes.studentList);
-  /// ```
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.login:

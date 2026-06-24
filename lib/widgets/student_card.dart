@@ -3,17 +3,6 @@ import 'package:mini_school_app/config/app_theme.dart';
 import 'package:mini_school_app/models/student_model.dart';
 
 /// Student card widget for list view
-///
-/// Displays basic student info in a card
-/// Tapping navigates to detail screen
-///
-/// Usage:
-/// ```
-/// StudentCard(
-///   student: student,
-///   onTap: () => Navigator.push(context, ...),
-/// );
-/// ```
 class StudentCard extends StatelessWidget {
   /// Student data to display
   final Student student;
