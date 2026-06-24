@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:mini_school_app/config/app_theme.dart';
-import 'package:mini_school_app/viewmodels/auth_viewmodel.dart';
+import 'package:student_hub/config/app_theme.dart';
+import 'package:student_hub/viewmodels/auth_viewmodel.dart';
 
 /// Login Screen
 /// Features:

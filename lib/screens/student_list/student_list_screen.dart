@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:mini_school_app/screens/profile/profile_screen.dart';
-import 'package:mini_school_app/screens/student_detail/student_detail_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:mini_school_app/config/app_theme.dart';
-import 'package:mini_school_app/viewmodels/auth_viewmodel.dart';
-import 'package:mini_school_app/viewmodels/student_list_viewmodel.dart';
-import 'package:mini_school_app/widgets/loading_widget.dart';
-import 'package:mini_school_app/widgets/error_widget.dart';
-import 'package:mini_school_app/widgets/empty_state_widget.dart';
-import 'package:mini_school_app/widgets/student_card.dart';
+import 'package:student_hub/config/app_theme.dart';
+import 'package:student_hub/screens/profile/profile_screen.dart';
+import 'package:student_hub/screens/student_detail/student_detail_screen.dart';
+import 'package:student_hub/viewmodels/auth_viewmodel.dart';
+import 'package:student_hub/viewmodels/student_list_viewmodel.dart';
+import 'package:student_hub/widgets/empty_state_widget.dart';
+import 'package:student_hub/widgets/error_widget.dart';
+import 'package:student_hub/widgets/loading_widget.dart';
+import 'package:student_hub/widgets/student_card.dart';
 
 /// Student List Screen
 /// Features:
