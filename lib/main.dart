@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 import 'config/app_theme.dart';
+import 'config/routes.dart';
 import 'services/api_service.dart';
 import 'services/auth_service.dart';
 import 'services/student_service.dart';
@@ -89,33 +90,43 @@ class MyApp extends StatelessWidget {
         /// Profile ViewModel
         /// Manages user profile and logout
         ChangeNotifierProvider<ProfileViewModel>(
-          create: (context) =>
-              ProfileViewModel(authService: context.read<AuthService>()),
+          create: (context) => ProfileViewModel(
+            authService: context.read<AuthService>(),
+            prefs: prefs,
+          ),
         ),
       ],
 
       // ============ Material App Configuration ============
-      child: MaterialApp(
-        title: 'Mini School App',
-        debugShowCheckedModeBanner: false,
+      child: Consumer<ProfileViewModel>(
+        builder: (context, profileViewModel, _) {
+          return MaterialApp(
+            title: 'Mini School App',
+            debugShowCheckedModeBanner: false,
 
-        // ============ Themes ============
-        theme: AppTheme.lightTheme,
-        darkTheme: AppTheme.darkTheme,
-        themeMode: ThemeMode.system, // Follow system dark/light mode
-        // ============ Initial Route ============
-        // Show login if not authenticated, else show student list
-        home: Consumer<AuthViewModel>(
-          builder: (context, authViewModel, _) {
-            if (authViewModel.isLoggedIn) {
-              // User is logged in, show student list
-              return const StudentListScreen();
-            } else {
-              // User not logged in, show login
-              return const LoginScreen();
-            }
-          },
-        ),
+            // ============ Themes ============
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            themeMode: profileViewModel.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+
+            // ============ Routing ============
+            onGenerateRoute: RouteGenerator.generateRoute,
+
+            // ============ Initial Route ============
+            // Show login if not authenticated, else show student list
+            home: Consumer<AuthViewModel>(
+              builder: (context, authViewModel, _) {
+                if (authViewModel.isLoggedIn) {
+                  // User is logged in, show student list
+                  return const StudentListScreen();
+                } else {
+                  // User not logged in, show login
+                  return const LoginScreen();
+                }
+              },
+            ),
+          );
+        },
       ),
     );
   }

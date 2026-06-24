@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mini_school_app/models/user_model.dart';
 import 'package:mini_school_app/services/auth_service.dart';
 
@@ -15,6 +16,7 @@ import 'package:mini_school_app/services/auth_service.dart';
 /// - errorMessage: Error messages
 class ProfileViewModel extends ChangeNotifier {
   final AuthService _authService;
+  final SharedPreferences _prefs;
 
   // ============ State Properties ============
 
@@ -29,10 +31,32 @@ class ProfileViewModel extends ChangeNotifier {
   String? _errorMessage;
   String? get errorMessage => _errorMessage;
 
+  /// Theme preference state
+  bool _isDarkMode = false;
+  bool get isDarkMode => _isDarkMode;
+
   // ============ Constructor ============
 
-  ProfileViewModel({required AuthService authService})
-    : _authService = authService;
+  ProfileViewModel({
+    required AuthService authService,
+    required SharedPreferences prefs,
+  })  : _authService = authService,
+        _prefs = prefs {
+    _loadThemePreference();
+  }
+
+  /// Load theme preference from SharedPreferences
+  void _loadThemePreference() {
+    _isDarkMode = _prefs.getBool('is_dark_mode') ?? false;
+    notifyListeners();
+  }
+
+  /// Toggle and save theme preference
+  Future<void> toggleTheme(bool value) async {
+    _isDarkMode = value;
+    await _prefs.setBool('is_dark_mode', value);
+    notifyListeners();
+  }
 
   // ============ Public Methods ============
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:mini_school_app/config/app_theme.dart';
+import 'package:mini_school_app/config/routes.dart';
 import 'package:mini_school_app/viewmodels/auth_viewmodel.dart';
 import 'package:mini_school_app/viewmodels/profile_viewmodel.dart';
 
@@ -84,11 +85,15 @@ class ProfileScreen extends StatelessWidget {
   // ============ Builder Widgets ============
 
   Widget _buildUserCard(BuildContext context, dynamic user) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Container(
       margin: EdgeInsets.all(16),
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: AppColors.primaryBlue.withOpacity(0.1),
+        color: isDark
+            ? AppColors.primaryBlue.withOpacity(0.2)
+            : AppColors.primaryBlue.withOpacity(0.1),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: AppColors.primaryBlue.withOpacity(0.3)),
       ),
@@ -110,9 +115,10 @@ class ProfileScreen extends StatelessWidget {
           // Email
           Text(
             user.email ?? 'No Email',
-            style: Theme.of(
-              context,
-            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.w600,
+              color: isDark ? Colors.white : AppColors.textPrimary,
+            ),
           ),
 
           SizedBox(height: 8),
@@ -146,6 +152,8 @@ class ProfileScreen extends StatelessWidget {
   }
 
   Widget _buildSettingsSection(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
@@ -153,9 +161,10 @@ class ProfileScreen extends StatelessWidget {
         children: [
           Text(
             'Settings',
-            style: Theme.of(
-              context,
-            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.bold,
+              color: isDark ? Colors.white : AppColors.textPrimary,
+            ),
           ),
 
           SizedBox(height: 16),
@@ -179,20 +188,23 @@ class ProfileScreen extends StatelessWidget {
                     SizedBox(width: 16),
                     Text(
                       'Dark Mode',
-                      style: Theme.of(context).textTheme.bodyLarge,
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: isDark ? Colors.white : AppColors.textPrimary,
+                      ),
                     ),
                   ],
                 ),
                 Switch(
-                  value: Theme.of(context).brightness == Brightness.dark,
-                  onChanged: (value) {
-                    // Dark mode toggle functionality
-                    // This would be implemented with a theme provider
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Dark mode: ${value ? "On" : "Off"}'),
-                      ),
-                    );
+                  value: context.read<ProfileViewModel>().isDarkMode,
+                  onChanged: (value) async {
+                    await context.read<ProfileViewModel>().toggleTheme(value);
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Dark mode: ${value ? "On" : "Off"}'),
+                        ),
+                      );
+                    }
                   },
                 ),
               ],
@@ -220,7 +232,9 @@ class ProfileScreen extends StatelessWidget {
                     SizedBox(width: 16),
                     Text(
                       'Notifications',
-                      style: Theme.of(context).textTheme.bodyLarge,
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: isDark ? Colors.white : AppColors.textPrimary,
+                      ),
                     ),
                   ],
                 ),
@@ -243,6 +257,8 @@ class ProfileScreen extends StatelessWidget {
   }
 
   Widget _buildAccountSection(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
@@ -250,9 +266,10 @@ class ProfileScreen extends StatelessWidget {
         children: [
           Text(
             'Account',
-            style: Theme.of(
-              context,
-            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.bold,
+              color: isDark ? Colors.white : AppColors.textPrimary,
+            ),
           ),
 
           SizedBox(height: 16),
@@ -273,7 +290,9 @@ class ProfileScreen extends StatelessWidget {
                     SizedBox(width: 16),
                     Text(
                       'Change Password',
-                      style: Theme.of(context).textTheme.bodyLarge,
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: isDark ? Colors.white : AppColors.textPrimary,
+                      ),
                     ),
                   ],
                 ),
@@ -307,7 +326,9 @@ class ProfileScreen extends StatelessWidget {
                     SizedBox(width: 16),
                     Text(
                       'Privacy Policy',
-                      style: Theme.of(context).textTheme.bodyLarge,
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: isDark ? Colors.white : AppColors.textPrimary,
+                      ),
                     ),
                   ],
                 ),
@@ -359,21 +380,45 @@ class ProfileScreen extends StatelessWidget {
     BuildContext context,
     ProfileViewModel profileViewModel,
   ) {
+    final authViewModel = context.read<AuthViewModel>();
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
+      builder: (dialogContext) => AlertDialog(
         title: Text('Logout'),
         content: Text('Are you sure you want to logout?'),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => Navigator.pop(dialogContext),
             child: Text('Cancel'),
           ),
           TextButton(
             onPressed: () async {
-              Navigator.pop(context); // Close dialog
+              Navigator.pop(dialogContext); // Close dialog
               await profileViewModel.logout();
-              // Auto-navigate to login happens in main.dart Consumer
+              if (profileViewModel.errorMessage == null) {
+                await authViewModel.logout();
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Logged out successfully'),
+                      backgroundColor: AppColors.success,
+                    ),
+                  );
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                    Routes.login,
+                    (route) => false,
+                  );
+                }
+              } else {
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(profileViewModel.errorMessage!),
+                      backgroundColor: AppColors.error,
+                    ),
+                  );
+                }
+              }
             },
             child: Text('Logout', style: TextStyle(color: AppColors.error)),
           ),
