@@ -152,7 +152,7 @@ class ProfileScreen extends StatelessWidget {
 
   Widget _buildSettingsSection(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-
+    final profileViewModel = context.watch<ProfileViewModel>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
@@ -238,8 +238,10 @@ class ProfileScreen extends StatelessWidget {
                   ],
                 ),
                 Switch(
-                  value: true,
+                  value: profileViewModel.notificationsEnabled,
                   onChanged: (value) {
+                    context.read<ProfileViewModel>().toggleNotifications(value);
+
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text('Notifications: ${value ? "On" : "Off"}'),
@@ -362,7 +364,7 @@ class ProfileScreen extends StatelessWidget {
           ),
           SizedBox(height: 8),
           Text(
-            '© 2024 Mini School. All rights reserved.',
+            '© 2026 StudentHub. All rights reserved.',
             style: Theme.of(
               context,
             ).textTheme.labelSmall?.copyWith(color: AppColors.textSecondary),

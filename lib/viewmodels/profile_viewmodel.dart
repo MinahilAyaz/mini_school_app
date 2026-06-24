@@ -87,4 +87,14 @@ class ProfileViewModel extends ChangeNotifier {
     _errorMessage = null;
     notifyListeners();
   }
+
+  /// Notification preference state
+  bool _notificationsEnabled = true;
+
+  bool get notificationsEnabled => _notificationsEnabled;
+
+  void toggleNotifications(bool value) {
+    _notificationsEnabled = value;
+    notifyListeners();
+  }
 }
