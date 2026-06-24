@@ -6,7 +6,7 @@ class AppConstants {
   // ============ API Configuration ============
 
   /// Base URL for authentication API (reqres.in - fake but realistic)
-  static const String authBaseUrl = 'https://reqres.in/api';
+  static const String authBaseUrl = 'https://dummyjson.com';
 
   /// Base URL for student/user data API (JSONPlaceholder)
   static const String studentBaseUrl = 'https://jsonplaceholder.typicode.com';
@@ -16,7 +16,7 @@ class AppConstants {
   /// Login endpoint - POST request
   /// Request body: { "email": "...", "password": "..." }
   /// Response: { "token": "..." } or { "error": "..." }
-  static const String loginEndpoint = '$authBaseUrl/login';
+  static const String loginEndpoint = '$authBaseUrl/auth/login';
 
   // ============ Student Endpoints ============
 
@@ -61,11 +61,9 @@ class AppConstants {
 
   // ============ Test Credentials ============
 
-  /// Valid test email for reqres.in
-  /// (Use this for testing login if needed)
-  static const String testEmail = 'eve.holt@reqres.in';
+  /// Valid test username for dummyjson.com
+  static const String testEmail = 'emilys';
 
-  /// Valid test password for reqres.in
-  /// (Use this for testing login if needed)
-  static const String testPassword = 'cityslickas';
+  /// Valid test password for dummyjson.com
+  static const String testPassword = 'emilyspass';
 }

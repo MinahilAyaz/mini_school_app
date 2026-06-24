@@ -47,11 +47,16 @@ class AuthService {
   /// final user = await authService.login('test@example.com', 'password');
   /// print(user.token); // Success!
   /// ```
+  /// Login with email and password
+  /// Login with email and password
+  ///
+  /// dummyjson.com API expects username and password
+  /// Login with username and password
   Future<User> login({required String email, required String password}) async {
     // Validate inputs
     if (email.isEmpty) {
       throw ValidationException(
-        message: 'Email cannot be empty',
+        message: 'Username cannot be empty',
         code: 'EMPTY_EMAIL',
       );
     }
@@ -63,26 +68,44 @@ class AuthService {
       );
     }
 
-    if (!_isValidEmail(email)) {
-      throw ValidationException(
-        message: 'Please enter a valid email',
-        code: 'INVALID_EMAIL_FORMAT',
-      );
-    }
-
     try {
-      // Make API call
+      // Make API call to dummyjson.com
       final response = await _apiService.post(
         AppConstants.loginEndpoint,
-        body: {'email': email, 'password': password},
+        body: {'username': email.trim(), 'password': password},
       );
+
+      print('=== Login Response ===');
+      print('Response: $response');
+      print('======================');
+
+      // Check if response is valid
+      if (response is! Map<String, dynamic>) {
+        throw ParsingException(message: 'Invalid response format');
+      }
+
+      // Get token from response - dummyjson returns 'accessToken' not 'token'
+      final token = response['accessToken'] as String?;
+
+      if (token == null || token.isEmpty) {
+        final error = response['message'] ?? 'Login failed';
+        throw AuthException(
+          message: error is String
+              ? error
+              : 'Login failed - invalid credentials',
+          code: 'LOGIN_FAILED',
+        );
+      }
 
       // Create user from response
       final user = User.fromJson({
-        'id': email.hashCode.toString(),
-        'email': email,
-        'token': response['token'] ?? '',
+        'id': response['id']?.toString() ?? email,
+        'email': response['email'] ?? email,
+        'token': token,
+        'name': response['username'] ?? response['firstName'],
       });
+
+      print('✓ Login successful for: ${user.email}');
 
       // Save to local storage
       await _saveUserSession(user);
@@ -92,6 +115,7 @@ class AuthService {
 
       return user;
     } catch (e) {
+      print('Login error: $e');
       rethrow;
     }
   }

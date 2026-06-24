@@ -111,26 +111,99 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     children: [
                       // ============ Email Field ============
+                      // TextFormField(
+                      //   controller: _emailController,
+                      //   decoration: InputDecoration(
+                      //     hintText: 'Username',
+                      //     prefixIcon: Icon(Icons.email_outlined),
+                      //     labelText: 'Email',
+                      //   ),
+                      //   keyboardType: TextInputType.emailAddress,
+                      //   enabled: !authViewModel.isLoading,
+                      //   validator: (value) {
+                      //     if (value?.isEmpty ?? true) {
+                      //       return 'Email is required';
+                      //     }
+                      //     // if (!_isValidEmail(value!)) {
+                      //     //   return 'Please enter a valid email';
+                      //     // }
+                      //     return null;
+                      //   },
+                      //   onChanged: (_) {
+                      //     // Clear error when user starts typing
+                      //     if (authViewModel.errorMessage != null) {
+                      //       authViewModel.clearError();
+                      //     }
+                      //   },
+                      // ),
+
+                      //SizedBox(height: 16),
+
+                      // ============ Password Field ============
+                      // TextFormField(
+                      //   controller: _passwordController,
+                      //   decoration: InputDecoration(
+                      //     hintText: 'Username',
+                      //     prefixIcon: Icon(Icons.lock_outlined),
+                      //     labelText: 'Password',
+                      //     suffixIcon: IconButton(
+                      //       icon: Icon(
+                      //         _obscurePassword
+                      //             ? Icons.visibility_outlined
+                      //             : Icons.visibility_off_outlined,
+                      //       ),
+                      //       onPressed: () {
+                      //         setState(() {
+                      //           _obscurePassword = !_obscurePassword;
+                      //         });
+                      //       },
+                      //     ),
+                      //   ),
+                      //   obscureText: _obscurePassword,
+                      //   enabled: !authViewModel.isLoading,
+
+                      //   // validator: (value) {
+                      //   //   if (value?.isEmpty ?? true) {
+                      //   //     return 'Password is required';
+                      //   //   }
+                      //   //   if ((value?.length ?? 0) < 4) {
+                      //   //     return 'Password must be at least 4 characters';
+                      //   //   }
+                      //   //   return null;
+                      //   // },
+                      //   validator: (value) {
+                      //     if (value?.isEmpty ?? true) {
+                      //       return 'Username is required';
+                      //     }
+                      //     // Don't validate email format since we're using username
+                      //     return null;
+                      //   },
+
+                      //   onChanged: (_) {
+                      //     // Clear error when user starts typing
+                      //     if (authViewModel.errorMessage != null) {
+                      //       authViewModel.clearError();
+                      //     }
+                      //   },
+                      // ),
+
+                      // ============ Username Field ============
                       TextFormField(
                         controller: _emailController,
                         decoration: InputDecoration(
-                          hintText: 'Email Address',
-                          prefixIcon: Icon(Icons.email_outlined),
-                          labelText: 'Email',
+                          hintText: 'Enter your username',
+                          prefixIcon: Icon(Icons.person_outlined),
+                          labelText: 'Username',
                         ),
-                        keyboardType: TextInputType.emailAddress,
+                        keyboardType: TextInputType.text,
                         enabled: !authViewModel.isLoading,
                         validator: (value) {
                           if (value?.isEmpty ?? true) {
-                            return 'Email is required';
-                          }
-                          if (!_isValidEmail(value!)) {
-                            return 'Please enter a valid email';
+                            return 'Username is required';
                           }
                           return null;
                         },
                         onChanged: (_) {
-                          // Clear error when user starts typing
                           if (authViewModel.errorMessage != null) {
                             authViewModel.clearError();
                           }
@@ -143,7 +216,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       TextFormField(
                         controller: _passwordController,
                         decoration: InputDecoration(
-                          hintText: 'Password',
+                          hintText: 'Enter your password',
                           prefixIcon: Icon(Icons.lock_outlined),
                           labelText: 'Password',
                           suffixIcon: IconButton(
@@ -165,13 +238,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           if (value?.isEmpty ?? true) {
                             return 'Password is required';
                           }
-                          if ((value?.length ?? 0) < 4) {
-                            return 'Password must be at least 4 characters';
-                          }
                           return null;
                         },
                         onChanged: (_) {
-                          // Clear error when user starts typing
                           if (authViewModel.errorMessage != null) {
                             authViewModel.clearError();
                           }
@@ -311,12 +380,12 @@ class _LoginScreenState extends State<LoginScreen> {
   // ============ Private Methods ============
 
   /// Validate email format
-  bool _isValidEmail(String email) {
-    final emailRegex = RegExp(
-      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
-    );
-    return emailRegex.hasMatch(email);
-  }
+  // bool _isValidEmail(String email) {
+  //   final emailRegex = RegExp(
+  //     r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+  //   );
+  //   return emailRegex.hasMatch(email);
+  // }
 
   /// Handle login button press
   ///
