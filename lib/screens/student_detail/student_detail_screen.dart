@@ -13,6 +13,7 @@ import 'package:url_launcher/url_launcher.dart';
 /// - Click to open email/phone/website
 /// - Loading and error states
 /// - Back navigation
+/// - Uses actual API data only (no fake metrics)
 class StudentDetailScreen extends StatefulWidget {
   /// Student ID to load
   final int studentId;
@@ -43,10 +44,10 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
     return Scaffold(
       // ============ App Bar ============
       appBar: AppBar(
-        title: Text('Student Details'),
+        title: const Text('Student Details'),
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
+          icon: const Icon(Icons.arrow_back_ios),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -63,8 +64,8 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
               left: 0,
               right: 0,
               child: Container(
-                padding: EdgeInsets.all(12),
-                margin: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(12),
+                margin: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   color: AppColors.error.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(8),
@@ -73,7 +74,7 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                 child: Row(
                   children: [
                     Icon(Icons.error_outline, color: AppColors.error),
-                    SizedBox(width: 12),
+                    const SizedBox(width: 12),
                     Expanded(
                       child: Text(
                         detailViewModel.errorMessage!,
@@ -83,7 +84,10 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                     IconButton(
                       icon: Icon(Icons.close, color: AppColors.error),
                       onPressed: detailViewModel.clearError,
-                      constraints: BoxConstraints(minWidth: 30, minHeight: 30),
+                      constraints: const BoxConstraints(
+                        minWidth: 30,
+                        minHeight: 30,
+                      ),
                       padding: EdgeInsets.zero,
                     ),
                   ],
@@ -100,7 +104,7 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
   Widget _buildContent(BuildContext context, StudentDetailViewModel viewModel) {
     // Loading state
     if (viewModel.isLoading) {
-      return LoadingWidget(message: 'Loading student details...');
+      return const LoadingWidget(message: 'Loading student details...');
     }
 
     // Error state
@@ -131,22 +135,39 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
         children: [
           // ============ Header Card ============
           Container(
-            color: AppColors.primaryBlue.withOpacity(0.1),
-            padding: EdgeInsets.all(24),
+            width: double.infinity,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  AppColors.primaryBlue.withOpacity(0.3),
+                  AppColors.secondaryPurple.withOpacity(0.2),
+                ],
+              ),
+            ),
+            padding: const EdgeInsets.all(24),
             child: Column(
               children: [
-                // Avatar
+                // Avatar with Student ID
                 Container(
                   width: 100,
                   height: 100,
                   decoration: BoxDecoration(
                     color: AppColors.primaryBlue,
                     borderRadius: BorderRadius.circular(50),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.primaryBlue.withOpacity(0.3),
+                        blurRadius: 10,
+                        offset: const Offset(0, 5),
+                      ),
+                    ],
                   ),
                   child: Center(
                     child: Text(
                       '${student.id}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 48,
                         fontWeight: FontWeight.bold,
@@ -155,34 +176,45 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                   ),
                 ),
 
-                SizedBox(height: 16),
+                const SizedBox(height: 20),
 
-                // Name
+                // Student Name
                 Text(
                   student.name,
-                  style: Theme.of(context).textTheme.headlineMedium,
+                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
                   textAlign: TextAlign.center,
                 ),
 
-                if (student.company != null) ...[
-                  SizedBox(height: 8),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    decoration: BoxDecoration(
-                      color: AppColors.secondaryPurple.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Text(
-                      student.company!,
-                      style: Theme.of(context).textTheme.labelSmall,
+                const SizedBox(height: 8),
+
+                // Student ID Badge
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
+                  decoration: BoxDecoration(
+                    color: AppColors.secondaryPurple.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: AppColors.secondaryPurple.withOpacity(0.4),
                     ),
                   ),
-                ],
+                  child: Text(
+                    'ID: ${student.id}',
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                      color: AppColors.secondaryPurple,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
 
-          SizedBox(height: 24),
+          const SizedBox(height: 28),
 
           // ============ Information Sections ============
           Padding(
@@ -190,9 +222,9 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // ============ Contact Section ============
+                // ============ Contact Information Section ============
                 _buildSectionTitle(context, 'Contact Information'),
-                SizedBox(height: 12),
+                const SizedBox(height: 16),
 
                 // Email
                 _buildContactItem(
@@ -203,7 +235,7 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                   onTap: () => _launchEmail(student.email),
                 ),
 
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
 
                 // Phone
                 _buildContactItem(
@@ -214,7 +246,7 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                   onTap: () => _launchPhone(student.phone),
                 ),
 
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
 
                 // Website
                 _buildContactItem(
@@ -225,45 +257,22 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                   onTap: () => _launchWebsite(student.website),
                 ),
 
-                SizedBox(height: 32),
+                const SizedBox(height: 32),
 
                 // ============ Address Section ============
-                if (student.address != null) ...[
+                if (student.address != null && student.address!.isNotEmpty) ...[
                   _buildSectionTitle(context, 'Address'),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 16),
                   _buildAddressItem(context, student.address!),
-                  SizedBox(height: 32),
-                ],
-
-                // ============ Company Section ============
-                if (student.company != null) ...[
-                  _buildSectionTitle(context, 'Company'),
-                  SizedBox(height: 12),
-                  Container(
-                    padding: EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: AppColors.primaryBlue.withOpacity(0.2),
-                      ),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.business_outlined,
-                          color: AppColors.primaryBlue,
-                        ),
-                        SizedBox(width: 16),
-                        Expanded(
-                          child: Text(
-                            student.company!,
-                            style: Theme.of(context).textTheme.bodyLarge,
-                          ),
-                        ),
-                      ],
-                    ),
+                  const SizedBox(height: 32),
+                ] else ...[
+                  _buildSectionTitle(context, 'Address'),
+                  const SizedBox(height: 16),
+                  _buildNotAvailableItem(
+                    context,
+                    'Address information not available',
                   ),
-                  SizedBox(height: 32),
+                  const SizedBox(height: 32),
                 ],
 
                 // ============ Action Button ============
@@ -272,12 +281,12 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                   height: 50,
                   child: ElevatedButton.icon(
                     onPressed: () => Navigator.pop(context),
-                    icon: Icon(Icons.arrow_back),
-                    label: Text('Back to List'),
+                    icon: const Icon(Icons.arrow_back),
+                    label: const Text('Back to List'),
                   ),
                 ),
 
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
               ],
             ),
           ),
@@ -291,9 +300,10 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
   Widget _buildSectionTitle(BuildContext context, String title) {
     return Text(
       title,
-      style: Theme.of(
-        context,
-      ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+        fontWeight: FontWeight.bold,
+        color: AppColors.textPrimary,
+      ),
     );
   }
 
@@ -305,15 +315,16 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
     required VoidCallback onTap,
   }) {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         border: Border.all(color: AppColors.primaryBlue.withOpacity(0.2)),
         borderRadius: BorderRadius.circular(12),
+        color: AppColors.primaryBlue.withOpacity(0.05),
       ),
       child: Row(
         children: [
-          Icon(icon, color: AppColors.primaryBlue),
-          SizedBox(width: 16),
+          Icon(icon, color: AppColors.primaryBlue, size: 24),
+          const SizedBox(width: 16),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -322,9 +333,10 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                   label,
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
                     color: AppColors.textSecondary,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 6),
                 InkWell(
                   onTap: onTap,
                   child: Text(
@@ -338,7 +350,11 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
               ],
             ),
           ),
-          Icon(Icons.arrow_outward, size: 16, color: AppColors.textSecondary),
+          Icon(
+            Icons.arrow_outward,
+            size: 16,
+            color: AppColors.primaryBlue.withOpacity(0.6),
+          ),
         ],
       ),
     );
@@ -346,17 +362,53 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
 
   Widget _buildAddressItem(BuildContext context, String address) {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         border: Border.all(color: AppColors.primaryBlue.withOpacity(0.2)),
         borderRadius: BorderRadius.circular(12),
+        color: AppColors.primaryBlue.withOpacity(0.05),
       ),
       child: Row(
         children: [
-          Icon(Icons.location_on_outlined, color: AppColors.primaryBlue),
-          SizedBox(width: 16),
+          Icon(
+            Icons.location_on_outlined,
+            color: AppColors.primaryBlue,
+            size: 24,
+          ),
+          const SizedBox(width: 16),
           Expanded(
-            child: Text(address, style: Theme.of(context).textTheme.bodyLarge),
+            child: Text(
+              address,
+              style: Theme.of(
+                context,
+              ).textTheme.bodyLarge?.copyWith(color: AppColors.textPrimary),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildNotAvailableItem(BuildContext context, String message) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        border: Border.all(color: AppColors.textSecondary.withOpacity(0.3)),
+        borderRadius: BorderRadius.circular(12),
+        color: AppColors.textSecondary.withOpacity(0.05),
+      ),
+      child: Row(
+        children: [
+          Icon(Icons.info_outline, color: AppColors.textSecondary, size: 24),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Text(
+              message,
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                color: AppColors.textSecondary,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
           ),
         ],
       ),
@@ -371,9 +423,11 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
     if (await canLaunchUrl(emailUri)) {
       await launchUrl(emailUri);
     } else {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Could not open email app')));
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Could not open email app')),
+        );
+      }
     }
   }
 
@@ -383,9 +437,11 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
     if (await canLaunchUrl(phoneUri)) {
       await launchUrl(phoneUri);
     } else {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Could not open phone app')));
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Could not open phone app')),
+        );
+      }
     }
   }
 
@@ -400,9 +456,11 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
     if (await canLaunchUrl(websiteUri)) {
       await launchUrl(websiteUri, mode: LaunchMode.externalApplication);
     } else {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Could not open website')));
+      if (mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text('Could not open website')));
+      }
     }
   }
 }

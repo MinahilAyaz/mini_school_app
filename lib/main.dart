@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mini_school_app/screens/login/login_screen.dart';
+import 'package:mini_school_app/screens/splash/splash_screen.dart';
 import 'package:mini_school_app/screens/student_list/student_list_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -61,7 +61,6 @@ class MyApp extends StatelessWidget {
         // These use services and manage state
         // Use context.watch<ViewModelType>() to listen to changes
         // Use context.read<ViewModelType>() to access without listening
-
         /// Authentication ViewModel
         /// Manages login/logout state and current user
         ChangeNotifierProvider<AuthViewModel>(
@@ -121,7 +120,7 @@ class MyApp extends StatelessWidget {
                   return const StudentListScreen();
                 } else {
                   // User not logged in, show login
-                  return const LoginScreen();
+                  return const SplashScreen();
                 }
               },
             ),

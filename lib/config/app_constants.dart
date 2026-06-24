@@ -59,9 +59,9 @@ class AppConstants {
 
   // ============ Test Credentials ============
 
-  /// Valid test username for dummyjson.com
-  static const String testEmail = 'emilys';
+  // /// Valid test username for dummyjson.com
+  // static const String testEmail = 'emilys';
 
-  /// Valid test password for dummyjson.com
-  static const String testPassword = 'emilyspass';
+  // /// Valid test password for dummyjson.com
+  // static const String testPassword = 'emilyspass';
 }

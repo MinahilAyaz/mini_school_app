@@ -109,12 +109,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   key: _formKey,
                   child: Column(
                     children: [
-                      // ============ Username Field ============
+                      // ============ Email Field ============
                       TextFormField(
                         controller: _emailController,
                         decoration: InputDecoration(
                           hintText: 'Enter your username',
-                          prefixIcon: Icon(Icons.person_outlined),
+                          prefixIcon: Icon(Icons.email_outlined),
                           labelText: 'Username',
                         ),
                         keyboardType: TextInputType.text,
@@ -123,6 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           if (value?.isEmpty ?? true) {
                             return 'Username is required';
                           }
+
                           return null;
                         },
                         onChanged: (_) {
@@ -131,7 +132,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           }
                         },
                       ),
-
                       SizedBox(height: 16),
 
                       // ============ Password Field ============
@@ -232,61 +232,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                         ),
                       ),
-
-                      SizedBox(height: 24),
-
-                      // ============ Test Credentials Button ============
-
-                      // Remove this in production
-                      Container(
-                        padding: EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: AppColors.accentYellow.withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(
-                            color: AppColors.accentYellow,
-                            width: 1,
-                          ),
-                        ),
-                        child: Column(
-                          children: [
-                            Text(
-                              'Test Credentials:',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 13,
-                              ),
-                            ),
-                            SizedBox(height: 8),
-                            Text(
-                              'Email: ${AppConstants.testEmail}',
-                              style: TextStyle(fontSize: 12),
-                            ),
-                            Text(
-                              'Password: ${AppConstants.testPassword}',
-                              style: TextStyle(fontSize: 12),
-                            ),
-                            SizedBox(height: 8),
-                            SizedBox(
-                              width: double.infinity,
-                              child: ElevatedButton(
-                                onPressed: authViewModel.isLoading
-                                    ? null
-                                    : () => _fillTestCredentials(),
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: AppColors.accentYellow,
-                                  foregroundColor: AppColors.textPrimary,
-                                  padding: EdgeInsets.symmetric(vertical: 8),
-                                ),
-                                child: Text(
-                                  'Use Test Credentials',
-                                  style: TextStyle(fontSize: 12),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
                     ],
                   ),
                 ),
@@ -318,13 +263,5 @@ class _LoginScreenState extends State<LoginScreen> {
       email: _emailController.text.trim(),
       password: _passwordController.text,
     );
-  }
-
-  /// Fill email and password with test credentials
-  void _fillTestCredentials() {
-    setState(() {
-      _emailController.text = AppConstants.testEmail;
-      _passwordController.text = AppConstants.testPassword;
-    });
   }
 }
