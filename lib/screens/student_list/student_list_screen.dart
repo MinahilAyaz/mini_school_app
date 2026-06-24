@@ -63,13 +63,18 @@ class _StudentListScreenState extends State<StudentListScreen> {
               ? TextField(
                   controller: _searchController,
                   autofocus: true,
-                  style: TextStyle(color: AppColors.textPrimary),
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
                   decoration: InputDecoration(
                     hintText: 'Search students...',
-                    hintStyle: TextStyle(color: AppColors.textSecondary),
+                    hintStyle: TextStyle(color: Theme.of(context).hintColor),
                     border: InputBorder.none,
                     suffixIcon: IconButton(
-                      icon: Icon(Icons.clear, color: AppColors.textPrimary),
+                      icon: Icon(
+                        Icons.clear,
+                        color: Theme.of(context).colorScheme.onSurface,
+                      ),
                       onPressed: _clearSearch,
                     ),
                   ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:mini_school_app/config/app_constants.dart';
 import 'package:mini_school_app/config/app_theme.dart';
 import 'package:mini_school_app/viewmodels/auth_viewmodel.dart';
 

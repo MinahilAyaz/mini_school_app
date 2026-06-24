@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../config/app_theme.dart';
 
 /// A reusable dialog that displays a simple message.
 class NotificationDialog extends StatelessWidget {

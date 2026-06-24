@@ -302,7 +302,7 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
       title,
       style: Theme.of(context).textTheme.titleMedium?.copyWith(
         fontWeight: FontWeight.bold,
-        color: AppColors.textPrimary,
+        color: Theme.of(context).colorScheme.onSurface,
       ),
     );
   }
@@ -379,9 +379,9 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
           Expanded(
             child: Text(
               address,
-              style: Theme.of(
-                context,
-              ).textTheme.bodyLarge?.copyWith(color: AppColors.textPrimary),
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
             ),
           ),
         ],
