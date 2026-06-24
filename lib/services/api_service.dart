@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:mini_school_app/config/app_constants.dart';
-import 'package:mini_school_app/utils/exceptions.dart';
+import 'package:student_hub/config/app_constants.dart';
+import 'package:student_hub/utils/exceptions.dart';
 
 /// Base API service handling all HTTP requests
 /// Responsibilities:

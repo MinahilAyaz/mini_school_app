@@ -357,7 +357,7 @@ class ProfileScreen extends StatelessWidget {
           ),
           SizedBox(height: 4),
           Text(
-            'Mini School App v1.0.0',
+            'StudentHub v1.0.0',
             style: Theme.of(context).textTheme.labelSmall,
           ),
           SizedBox(height: 8),

@@ -98,7 +98,7 @@
 
 //                 // ============ App Name ============
 //                 Text(
-//                   'Mini School App',
+//                   'StudentHub',
 //                   style: Theme.of(context).textTheme.headlineLarge?.copyWith(
 //                     color: Colors.white,
 //                     fontWeight: FontWeight.bold,

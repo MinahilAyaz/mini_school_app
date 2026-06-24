@@ -1,8 +1,9 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:mini_school_app/config/app_constants.dart';
-import 'package:mini_school_app/models/user_model.dart';
-import 'package:mini_school_app/utils/exceptions.dart';
+import 'package:student_hub/config/app_constants.dart';
+import 'package:student_hub/models/user_model.dart';
+import 'package:student_hub/utils/exceptions.dart';
+
 import 'api_service.dart';
 
 /// Service for handling authentication (login/logout)
@@ -91,7 +92,7 @@ class AuthService {
       // Create user from response
       final user = User.fromJson({
         'id': response['id']?.toString() ?? email,
-        'email': response['email'] ?? email,
+        'email': email.trim(),
         'token': token,
         'name': response['username'] ?? response['firstName'],
       });

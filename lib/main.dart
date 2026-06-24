@@ -98,7 +98,7 @@ class MyApp extends StatelessWidget {
       child: Consumer<ProfileViewModel>(
         builder: (context, profileViewModel, _) {
           return MaterialApp(
-            title: 'Mini School App',
+            title: 'StudentHub',
             debugShowCheckedModeBanner: false,
 
             // ============ Themes ============

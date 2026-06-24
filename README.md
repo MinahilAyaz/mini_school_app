@@ -1,4 +1,4 @@
-# 🎓 Mini School App
+# 🎓 StudentHub
 
 A modern Flutter application for managing student information with real API integration, featuring login authentication, student list/detail views, and user profile management.
 

@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:mini_school_app/models/user_model.dart';
-import 'package:mini_school_app/services/auth_service.dart';
+import 'package:student_hub/models/user_model.dart';
+import 'package:student_hub/services/auth_service.dart';
 
 /// Profile/User ViewModel using Provider
 ///

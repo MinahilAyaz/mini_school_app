@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mini_school_app/config/app_theme.dart';
-import 'package:mini_school_app/models/student_model.dart';
+import 'package:student_hub/config/app_theme.dart';
+import 'package:student_hub/models/student_model.dart';
 
 /// Student card widget for list view
 class StudentCard extends StatelessWidget {

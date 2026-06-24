@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mini_school_app/config/app_theme.dart';
+import 'package:student_hub/config/app_theme.dart';
 
 class EmptyStateWidget extends StatelessWidget {
   /// Icon to display

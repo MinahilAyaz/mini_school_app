@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
-import 'package:mini_school_app/models/student_model.dart';
-import 'package:mini_school_app/services/student_service.dart';
-import 'package:mini_school_app/utils/exceptions.dart';
+import 'package:student_hub/models/student_model.dart';
+import 'package:student_hub/services/student_service.dart';
+import 'package:student_hub/utils/exceptions.dart';
 
 /// Student List ViewModel using Provider for state management
 ///

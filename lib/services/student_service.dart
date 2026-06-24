@@ -1,6 +1,7 @@
-import 'package:mini_school_app/config/app_constants.dart';
-import 'package:mini_school_app/models/student_model.dart';
-import 'package:mini_school_app/utils/exceptions.dart';
+import 'package:student_hub/config/app_constants.dart';
+import 'package:student_hub/models/student_model.dart';
+import 'package:student_hub/utils/exceptions.dart';
+
 import 'api_service.dart';
 
 /// Service for fetching student data
