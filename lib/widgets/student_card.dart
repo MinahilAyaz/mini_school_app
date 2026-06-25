@@ -80,7 +80,9 @@ class StudentCard extends StatelessWidget {
                   Icon(
                     Icons.arrow_forward_ios,
                     size: 16,
-                    color: AppColors.textSecondary,
+                    color: Theme.of(context).brightness == Brightness.dark
+                        ? AppColors.textDarkSecondary
+                        : AppColors.textSecondary,
                   ),
                 ],
               ),

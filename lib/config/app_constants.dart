@@ -56,12 +56,4 @@ class AppConstants {
   /// Delay before showing loading indicator (milliseconds)
   /// Prevents flickering for fast requests
   static const int loadingDelayMs = 500;
-
-  // ============ Test Credentials ============
-
-  // /// Valid test username for dummyjson.com
-  // static const String testEmail = 'emilys';
-
-  // /// Valid test password for dummyjson.com
-  // static const String testPassword = 'emilyspass';
 }

@@ -217,7 +217,7 @@ class _SplashScreenState extends State<SplashScreen>
                       child: FadeTransition(
                         opacity: _fadeAnimation,
                         child: Text(
-                          'Student Management Portal',
+                          'StudentHub',
                           style: Theme.of(context).textTheme.labelLarge
                               ?.copyWith(
                                 color: Colors.white.withValues(alpha: 0.75),

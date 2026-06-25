@@ -35,7 +35,7 @@ class AuthService {
   /// - Saves token to SharedPreferences
   /// - Saves email to SharedPreferences
   /// - Sets token in ApiService
-  ///
+
   /// Throws:
   /// - ValidationException: If email/password empty
   /// - AuthException: If credentials invalid
@@ -67,10 +67,6 @@ class AuthService {
         body: {'username': email.trim(), 'password': password},
       );
 
-      print('=== Login Response ===');
-      print('Response: $response');
-      print('======================');
-
       // Check if response is valid
       if (response is! Map<String, dynamic>) {
         throw ParsingException(message: 'Invalid response format');
@@ -97,8 +93,6 @@ class AuthService {
         'name': response['username'] ?? response['firstName'],
       });
 
-      print('✓ Login successful for: ${user.email}');
-
       // Save to local storage
       await _saveUserSession(user);
 
@@ -107,13 +101,12 @@ class AuthService {
 
       return user;
     } catch (e) {
-      print('Login error: $e');
       rethrow;
     }
   }
 
   /// Logout and clear session
-  ///
+
   /// - Clears stored token
   /// - Clears stored user data
   /// - Clears token from ApiService
@@ -143,7 +136,7 @@ class AuthService {
 
   /// Restore session from local storage
   /// Called on initialization to check if user was previously logged in
-  void _restoreSession() {
+  Future<void> _restoreSession() async {
     try {
       final userJson = _prefs.getString(AppConstants.userKey);
       final token = _prefs.getString(AppConstants.tokenKey);
@@ -158,7 +151,7 @@ class AuthService {
       }
     } catch (e) {
       // Silently fail - user will need to login again
-      logout();
+      await logout().catchError((_) {});
     }
   }
 
@@ -176,16 +169,5 @@ class AuthService {
         originalException: e,
       );
     }
-  }
-
-  /// Validate email format
-  ///
-  /// Simple regex validation
-  /// Real validation would use email_validator package
-  bool _isValidEmail(String email) {
-    final emailRegex = RegExp(
-      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
-    );
-    return emailRegex.hasMatch(email);
   }
 }

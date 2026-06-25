@@ -18,10 +18,10 @@ class StudentService {
   // ============ Public Methods ============
 
   /// Get list of all students
-  ///
+
   /// API: GET https://jsonplaceholder.typicode.com/users
   /// Returns: List of 10 users (treated as students)
-  ///
+
   /// Throws:
   /// - NetworkException: No internet or connection error
   /// - ServerException: 500+ error
@@ -54,13 +54,13 @@ class StudentService {
   }
 
   /// Get single student by ID
-  ///
+
   /// API: GET https://jsonplaceholder.typicode.com/users/{id}
   /// Returns: Single user with full details
-  ///
+
   /// Parameters:
   /// - id: Student ID (1-10 for JSONPlaceholder)
-  ///
+
   /// Throws:
   /// - ValidationException: If ID is invalid
   /// - NetworkException: No internet or connection error
@@ -93,13 +93,13 @@ class StudentService {
   }
 
   /// Search students by name (client-side filtering)
-  ///
+
   /// First fetches all students, then filters locally
   /// Not ideal for large datasets, but works for JSONPlaceholder
-  ///
+
   /// Parameters:
   /// - query: Search term (case-insensitive)
-  ///
+
   /// Returns: Filtered list of students
   Future<List<Student>> searchStudents(String query) async {
     try {

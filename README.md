@@ -2,7 +2,7 @@
 
 A modern Flutter application for managing student information with real API integration, featuring login authentication, student list/detail views, and user profile management.
 
-**Build with:** Flutter | Provider State Management | MVVM Architecture | Unit Tests
+**Build with:** Flutter | Provider State Management | MVVM Architecture
 
 ---
 
@@ -30,7 +30,7 @@ A modern Flutter application for managing student information with real API inte
 
 ### Core Functionality
 - ✅ **Real API Integration** - No hardcoded data, all API calls are live
-- ✅ **Secure Login** - Email/password authentication with session persistence
+- ✅ **Secure Login** - Username/password authentication with session persistence
 - ✅ **Student Management** - View list of students with detailed profiles
 - ✅ **User Profile** - Display logged-in user information with logout option
 - ✅ **Navigation** - Seamless routing between all screens
@@ -46,7 +46,6 @@ A modern Flutter application for managing student information with real API inte
 - ✅ **Clickable Contacts** - Email/phone/website integration
 
 ### Code Quality
-- ✅ **Unit Tests** - Tests for ViewModels, Services, and Validators
 - ✅ **Custom Exceptions** - Specific error types for different failure scenarios
 - ✅ **Validators** - Reusable validation functions (email, password, phone, etc)
 - ✅ **Extensions** - Dart and Kotlin-like utility extensions for strings, dates, etc
@@ -151,6 +150,10 @@ mini-school-app/
 
 │   ├── screens/
 
+│   │   ├── splash/
+
+│   │   │   └── splash_screen.dart
+
 │   │   ├── login/
 
 │   │   │   └── login_screen.dart
@@ -171,11 +174,15 @@ mini-school-app/
 
 │   ├── widgets/
 
+│   │   ├── custom_text_field.dart      # Reusable text field         
+
 │   │   ├── loading_widget.dart         # Loading spinner
 
 │   │   ├── error_widget.dart           # Error display
 
 │   │   ├── empty_state_widget.dart     # Empty state message
+
+│   │   ├── notification_dialog.dart    # Notification dialog
 
 │   │   └── student_card.dart           # Student list card
 
@@ -192,18 +199,6 @@ mini-school-app/
 │   │
 
 │   └── main.dart                       # App entry point
-
-│
-
-├── test/
-
-│   ├── validators_test.dart            # Validator tests
-
-│   ├── auth_viewmodel_test.dart        # AuthViewModel tests
-
-│   └── student_list_viewmodel_test.dart # StudentListViewModel tests
-
-│
 
 ├── pubspec.yaml                        # Dependencies
 
@@ -231,7 +226,7 @@ dart --version
 ### Step 1: Clone Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/mini-school-app.git
+git clone https://github.com/MinahilAyaz/mini-school-app.git
 cd mini-school-app
 ```
 
@@ -342,46 +337,6 @@ Each error type gets different UI treatment:
 ```bash
 flutter test
 ```
-
-### Run Specific Test
-```bash
-flutter test test/validators_test.dart
-```
-
-### Run with Coverage
-```bash
-flutter test --coverage
-```
-
-### Tests Included
-
-| Test File | Coverage |
-|-----------|----------|
-| `validators_test.dart` | Email, password, phone validation |
-| `auth_viewmodel_test.dart` | Login, logout, error handling |
-| `student_list_viewmodel_test.dart` | Fetch, search, filter students |
-
-### Test Examples
-
-```dart
-test('validateEmail returns null for valid email', () {
-  expect(Validators.validateEmail('test@example.com'), null);
-});
-
-test('login with invalid credentials shows error', () async {
-  // Arrange - mock service
-  when(mockAuthService.login(...)).thenThrow(AuthException(...));
-  
-  // Act
-  await authViewModel.login(email, password);
-  
-  // Assert
-  expect(authViewModel.errorMessage, isNotNull);
-  expect(authViewModel.isLoggedIn, false);
-});
-```
-
----
 
 ## 🔄 Git Workflow
 
@@ -498,27 +453,47 @@ Restart the app by pressing 'R' in terminal.
 
 ## 🎨 Design System
 
-### Colors
-Primary Blue: 
-#A9D6F5
-Secondary Purple: 
-#C9C3F5
-Accent Yellow: 
-#F2DC7D
-Background Light: 
-#F8FAFC
-Background Dark: 
-#1A202C
-Text Primary: 
-#2D3748
-Text Secondary: 
-#718096
-Success: 
-#48BB78
-Error: 
-#F56565
-Warning: 
-#ED8936
+### Color Palette
+
+The app uses a modern, soft-toned educational color system designed for readability and accessibility in both light and dark modes.
+
+## Primary Colors
+Primary Blue (Mauve/Purple): #987D9A
+Used for main actions, highlights, and primary UI elements.
+
+## Secondary Purple: #BB9AB1
+Used for secondary accents and supporting UI components.
+
+## Accent Colors
+Accent Orange (Beige/Tan): #EECEB9
+
+## Used for subtle highlights and decorative elements.
+Accent Yellow (Cream): #FEFBD8
+Used for soft background accents.
+
+## Background Colors
+Light Background: #FAFBFC
+Used in light mode screens.
+Dark Background: #121212
+Used in dark mode for high contrast and reduced eye strain.
+
+## Text Colors (Light Mode)
+Primary Text: #212121
+Secondary Text: #757575
+Text Colors (Dark Mode)
+Primary Text: #FAFBFC (high contrast white)
+Secondary Text: #BDBDBD (light gray for muted content)
+
+## Status Colors
+Success: #43A047
+Error: #E53935
+Warning: #FB8C00
+
+## Dividers
+Light Mode Divider: #E0E0E0
+Dark Mode Divider: #424242
+
+
 ### Typography
 **Font:** Google Fonts - Poppins
 
@@ -573,7 +548,6 @@ dart fix --apply
 
 ### Code Enhancements
 - [ ] **100% Test Coverage** - More comprehensive tests
-- [ ] **Integration Tests** - E2E UI testing
 - [ ] **Performance Profiling** - Optimize build time
 - [ ] **API Versioning** - Support multiple API versions
 
@@ -645,7 +619,7 @@ flutter pub get              # Get dependencies
 
 ---
 
-**Last Updated:** June 2025  
+**Last Updated:** June 202 6 
 **Flutter Version:** 3.10+  
 **Dart Version:** 3.0+  
 **Status:** ✅ Feature Complete

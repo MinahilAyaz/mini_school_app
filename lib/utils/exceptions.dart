@@ -11,7 +11,7 @@ abstract class AppException implements Exception {
 }
 
 /// Exception for network-related errors (no internet, connection timeout, etc)
-///
+
 /// When to use:
 /// - No internet connection
 /// - Connection timeout
@@ -32,7 +32,7 @@ class NetworkException extends AppException {
 }
 
 /// Exception for authentication-related errors (login failed, invalid token, etc)
-///
+
 /// When to use:
 /// - Invalid email/password
 /// - Token expired
@@ -54,7 +54,7 @@ class AuthException extends AppException {
 }
 
 /// Exception for form/input validation errors
-///
+
 /// When to use:
 /// - Email format invalid
 /// - Password too short
@@ -76,7 +76,7 @@ class ValidationException extends AppException {
 }
 
 /// Exception for server-side errors (500, 502, 503, etc)
-///
+
 /// When to use:
 /// - HTTP 500 Internal Server Error
 /// - HTTP 502 Bad Gateway
@@ -101,7 +101,7 @@ class ServerException extends AppException {
 }
 
 /// Exception for parsing JSON/data errors
-///
+
 /// When to use:
 /// - Invalid JSON response
 /// - Unexpected response format
@@ -122,7 +122,7 @@ class ParsingException extends AppException {
 }
 
 /// Exception for unknown/unexpected errors
-///
+
 /// When to use:
 /// - Unexpected error that doesn't fit other categories
 /// - Fallback for unknown exceptions

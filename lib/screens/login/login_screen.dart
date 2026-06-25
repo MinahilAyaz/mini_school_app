@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:student_hub/config/app_theme.dart';
+import 'package:student_hub/utils/validators.dart';
 import 'package:student_hub/viewmodels/auth_viewmodel.dart';
 
 /// Login Screen
@@ -96,7 +97,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 Text(
                   'Welcome Back',
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: AppColors.textSecondary,
+                    color: Theme.of(context).brightness == Brightness.dark
+                        ? AppColors.textDarkSecondary
+                        : AppColors.textSecondary,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -108,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   key: _formKey,
                   child: Column(
                     children: [
-                      // ============ Email Field ============
+                      // ============ Username Field ============
                       TextFormField(
                         controller: _emailController,
                         decoration: InputDecoration(
@@ -118,13 +121,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         keyboardType: TextInputType.text,
                         enabled: !authViewModel.isLoading,
-                        validator: (value) {
-                          if (value?.isEmpty ?? true) {
-                            return 'Username is required';
-                          }
-
-                          return null;
-                        },
+                        validator: (value) =>
+                            Validators.validateRequired(value, 'Username'),
                         onChanged: (_) {
                           if (authViewModel.errorMessage != null) {
                             authViewModel.clearError();
@@ -155,12 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         obscureText: _obscurePassword,
                         enabled: !authViewModel.isLoading,
-                        validator: (value) {
-                          if (value?.isEmpty ?? true) {
-                            return 'Password is required';
-                          }
-                          return null;
-                        },
+                        validator: Validators.validatePassword,
                         onChanged: (_) {
                           if (authViewModel.errorMessage != null) {
                             authViewModel.clearError();
@@ -218,7 +211,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   child: CircularProgressIndicator(
                                     strokeWidth: 2,
                                     valueColor: AlwaysStoppedAnimation<Color>(
-                                      AppColors.textPrimary,
+                                      Colors.white,
                                     ),
                                   ),
                                 )

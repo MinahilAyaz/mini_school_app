@@ -37,18 +37,22 @@ class ErrorDisplayWidget extends StatelessWidget {
           SizedBox(height: 16),
           Text(
             'Oops! Something went wrong',
-            style: Theme.of(
-              context,
-            ).textTheme.titleMedium?.copyWith(color: AppColors.textPrimary),
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? AppColors.textDarkPrimary
+                  : AppColors.textPrimary,
+            ),
           ),
           SizedBox(height: 8),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
               message,
-              style: Theme.of(
-                context,
-              ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? AppColors.textDarkSecondary
+                    : AppColors.textSecondary,
+              ),
               textAlign: TextAlign.center,
             ),
           ),

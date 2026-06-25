@@ -53,9 +53,11 @@ class EmptyStateWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 32),
             child: Text(
               message,
-              style: Theme.of(
-                context,
-              ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? AppColors.textDarkSecondary
+                    : AppColors.textSecondary,
+              ),
               textAlign: TextAlign.center,
             ),
           ),
@@ -105,9 +107,11 @@ class SearchEmptyStateWidget extends StatelessWidget {
           SizedBox(height: 8),
           Text(
             'No students match "$query"',
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? AppColors.textDarkSecondary
+                  : AppColors.textSecondary,
+            ),
           ),
           SizedBox(height: 32),
           ElevatedButton.icon(

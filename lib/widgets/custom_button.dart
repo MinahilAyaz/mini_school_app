@@ -24,7 +24,8 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final bg = backgroundColor ?? AppColors.primaryBlue;
     final fg = foregroundColor ?? Colors.white;
-    final pad = padding ?? const EdgeInsets.symmetric(horizontal: 24, vertical: 14);
+    final pad =
+        padding ?? const EdgeInsets.symmetric(horizontal: 24, vertical: 14);
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
@@ -49,7 +50,10 @@ class CustomButton extends StatelessWidget {
               )
             : Text(
                 label,
-                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
       ),
     );

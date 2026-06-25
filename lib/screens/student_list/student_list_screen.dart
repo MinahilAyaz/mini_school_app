@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:student_hub/config/app_theme.dart';
 import 'package:student_hub/screens/profile/profile_screen.dart';
 import 'package:student_hub/screens/student_detail/student_detail_screen.dart';
-import 'package:student_hub/viewmodels/auth_viewmodel.dart';
 import 'package:student_hub/viewmodels/student_list_viewmodel.dart';
 import 'package:student_hub/widgets/empty_state_widget.dart';
 import 'package:student_hub/widgets/error_widget.dart';
@@ -205,35 +204,10 @@ class _StudentListScreenState extends State<StudentListScreen> {
     );
   }
 
-  /// Handle logout
-  void _handleLogout(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text('Logout'),
-        content: Text('Are you sure you want to logout?'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text('Cancel'),
-          ),
-          TextButton(
-            onPressed: () async {
-              Navigator.pop(context); // Close dialog
-              await context.read<AuthViewModel>().logout();
-              // Auto-navigate to login happens in main.dart Consumer
-            },
-            child: Text('Logout', style: TextStyle(color: AppColors.error)),
-          ),
-        ],
-      ),
-    );
+  /// Navigate to profile screen
+  void _navigateToProfile(BuildContext context) {
+    Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (context) => ProfileScreen()));
   }
-}
-
-/// Navigate to profile screen
-void _navigateToProfile(BuildContext context) {
-  Navigator.of(
-    context,
-  ).push(MaterialPageRoute(builder: (context) => ProfileScreen()));
 }

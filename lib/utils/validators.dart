@@ -1,9 +1,7 @@
 /// Email validator
-///
 /// Validates email format using regex pattern
-///
 /// Returns error message if invalid, null if valid
-///
+
 class Validators {
   Validators._(); // Private constructor
 
@@ -30,7 +28,7 @@ class Validators {
   // ============ Password Validation ============
 
   /// Validate password strength
-  ///
+
   /// Requirements:
   /// - At least 4 characters
   /// - At least one number (optional for simplicity)
@@ -49,7 +47,7 @@ class Validators {
   // ============ Name Validation ============
 
   /// Validate name/full name
-  ///
+
   /// Requirements:
   /// - Not empty
   /// - At least 2 characters
@@ -75,13 +73,13 @@ class Validators {
   // ============ Phone Validation ============
 
   /// Validate phone number format
-  ///
+
   /// Accepts various formats:
   /// - 123-456-7890
   /// - (123) 456-7890
   /// - 1234567890
   /// - +1 123 456 7890
-  ///
+
   /// Returns null if valid, error message if invalid
   static String? validatePhone(String? phone) {
     if (phone == null || phone.isEmpty) {

@@ -56,7 +56,7 @@ extension StringExtension on String {
 /// DateTime extension methods
 extension DateTimeExtension on DateTime {
   /// Format DateTime as readable date
-  ///
+
   String formattedDate() {
     return DateFormat('MMM dd, yyyy').format(this);
   }
@@ -136,7 +136,6 @@ extension ListExtension<T> on List<T> {
 /// Nullable extension methods
 extension NullableExtension<T> on T? {
   /// Execute function if not null
-
   R? let<R>(R Function(T value) fn) {
     return this == null ? null : fn(this as T);
   }

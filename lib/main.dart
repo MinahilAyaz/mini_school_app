@@ -30,6 +30,7 @@ void main() async {
 /// - Configure themes (light and dark)
 /// - Setup navigation
 /// - Provide initial screen based on auth state
+
 class MyApp extends StatelessWidget {
   final SharedPreferences prefs;
 
@@ -112,6 +113,7 @@ class MyApp extends StatelessWidget {
             onGenerateRoute: RouteGenerator.generateRoute,
 
             // ============ Initial Route ============
+
             // Show login if not authenticated, else show student list
             home: Consumer<AuthViewModel>(
               builder: (context, authViewModel, _) {

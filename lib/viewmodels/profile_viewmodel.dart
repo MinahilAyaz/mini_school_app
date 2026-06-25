@@ -4,12 +4,12 @@ import 'package:student_hub/models/user_model.dart';
 import 'package:student_hub/services/auth_service.dart';
 
 /// Profile/User ViewModel using Provider
-///
+
 /// Responsibilities:
 /// - Display logged-in user information
 /// - Handle logout
 /// - Manage user preferences
-///
+
 /// State properties:
 /// - currentUser: Logged-in user info
 /// - isLoading: Show loading during logout
@@ -45,9 +45,10 @@ class ProfileViewModel extends ChangeNotifier {
     _loadThemePreference();
   }
 
-  /// Load theme preference from SharedPreferences
+  /// Load preferences from SharedPreferences
   void _loadThemePreference() {
     _isDarkMode = _prefs.getBool('is_dark_mode') ?? false;
+    _notificationsEnabled = _prefs.getBool('notifications_enabled') ?? true;
     notifyListeners();
   }
 
@@ -61,7 +62,7 @@ class ProfileViewModel extends ChangeNotifier {
   // ============ Public Methods ============
 
   /// Logout and navigate to login
-  ///
+
   /// Steps:
   /// 1. Set isLoading = true
   /// 2. Call authService.logout()
@@ -93,8 +94,9 @@ class ProfileViewModel extends ChangeNotifier {
 
   bool get notificationsEnabled => _notificationsEnabled;
 
-  void toggleNotifications(bool value) {
+  Future<void> toggleNotifications(bool value) async {
     _notificationsEnabled = value;
     notifyListeners();
+    await _prefs.setBool('notifications_enabled', value);
   }
 }

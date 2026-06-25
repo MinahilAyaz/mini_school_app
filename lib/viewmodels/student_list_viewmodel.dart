@@ -4,13 +4,13 @@ import 'package:student_hub/services/student_service.dart';
 import 'package:student_hub/utils/exceptions.dart';
 
 /// Student List ViewModel using Provider for state management
-///
+
 /// Responsibilities:
 /// - Fetch list of students from API
 /// - Handle loading, success, error, empty states
 /// - Support pull-to-refresh
 /// - Filter/search students
-///
+
 /// State properties:
 /// - students: List of fetched students
 /// - isLoading: Show loading indicator
@@ -55,19 +55,19 @@ class StudentListViewModel extends ChangeNotifier {
   // ============ Public Methods ============
 
   /// Fetch students from API
-  ///
+
   /// Steps:
   /// 1. Set isLoading = true
   /// 2. Call studentService.getStudents()
   /// 3. If success: save students list
   /// 4. If error: set error message
   /// 5. Reset search filter
-  ///
+
   /// Used for:
   /// - Initial load
   /// - Pull-to-refresh
   /// - Retry after error
-  ///
+
   /// Example:
   /// ```
   /// await viewModel.fetchStudents();
@@ -113,12 +113,12 @@ class StudentListViewModel extends ChangeNotifier {
   }
 
   /// Search/filter students by name or email
-  ///
+
   /// Steps:
   /// 1. Update search query
   /// 2. Filter students based on query
   /// 3. Notify listeners
-  ///
+
   /// Example:
   /// ```
   /// await viewModel.searchStudents('john');

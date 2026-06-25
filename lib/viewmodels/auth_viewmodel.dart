@@ -4,14 +4,14 @@ import 'package:student_hub/services/auth_service.dart';
 import 'package:student_hub/utils/exceptions.dart';
 
 /// Authentication ViewModel using Provider for state management
-///
+
 /// Responsibilities:
 /// - Manage login/logout state
 /// - Handle authentication errors
 /// - Persist session
 /// - Show loading indicators
 /// - Validate form inputs
-///
+
 /// State properties:
 /// - isLoading: Show loading indicator
 /// - isLoggedIn: User is authenticated

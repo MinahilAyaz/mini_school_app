@@ -194,7 +194,7 @@ class ProfileScreen extends StatelessWidget {
                   ],
                 ),
                 Switch(
-                  value: context.read<ProfileViewModel>().isDarkMode,
+                  value: profileViewModel.isDarkMode,
                   onChanged: (value) async {
                     await context.read<ProfileViewModel>().toggleTheme(value);
                     if (context.mounted) {
@@ -259,6 +259,9 @@ class ProfileScreen extends StatelessWidget {
 
   Widget _buildAccountSection(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final textSecondaryColor = isDark
+        ? AppColors.textDarkSecondary
+        : AppColors.textSecondary;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -300,7 +303,7 @@ class ProfileScreen extends StatelessWidget {
                 Icon(
                   Icons.arrow_forward_ios,
                   size: 16,
-                  color: AppColors.textSecondary,
+                  color: textSecondaryColor,
                 ),
               ],
             ),
@@ -336,7 +339,7 @@ class ProfileScreen extends StatelessWidget {
                 Icon(
                   Icons.arrow_forward_ios,
                   size: 16,
-                  color: AppColors.textSecondary,
+                  color: textSecondaryColor,
                 ),
               ],
             ),
@@ -347,6 +350,10 @@ class ProfileScreen extends StatelessWidget {
   }
 
   Widget _buildAppInfo(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final textSecondaryColor = isDark
+        ? AppColors.textDarkSecondary
+        : AppColors.textSecondary;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
@@ -355,7 +362,7 @@ class ProfileScreen extends StatelessWidget {
             'App Information',
             style: Theme.of(
               context,
-            ).textTheme.bodySmall?.copyWith(color: AppColors.textSecondary),
+            ).textTheme.bodySmall?.copyWith(color: textSecondaryColor),
           ),
           SizedBox(height: 4),
           Text(
@@ -367,7 +374,7 @@ class ProfileScreen extends StatelessWidget {
             '© 2026 StudentHub. All rights reserved.',
             style: Theme.of(
               context,
-            ).textTheme.labelSmall?.copyWith(color: AppColors.textSecondary),
+            ).textTheme.labelSmall?.copyWith(color: textSecondaryColor),
           ),
         ],
       ),

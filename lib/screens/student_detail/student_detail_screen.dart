@@ -314,6 +314,11 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
     required String value,
     required VoidCallback onTap,
   }) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final textSecondaryColor = isDark
+        ? AppColors.textDarkSecondary
+        : AppColors.textSecondary;
+
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -332,7 +337,7 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                 Text(
                   label,
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    color: AppColors.textSecondary,
+                    color: textSecondaryColor,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -390,22 +395,27 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
   }
 
   Widget _buildNotAvailableItem(BuildContext context, String message) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final textSecondaryColor = isDark
+        ? AppColors.textDarkSecondary
+        : AppColors.textSecondary;
+
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        border: Border.all(color: AppColors.textSecondary.withOpacity(0.3)),
+        border: Border.all(color: textSecondaryColor.withOpacity(0.3)),
         borderRadius: BorderRadius.circular(12),
-        color: AppColors.textSecondary.withOpacity(0.05),
+        color: textSecondaryColor.withOpacity(0.05),
       ),
       child: Row(
         children: [
-          Icon(Icons.info_outline, color: AppColors.textSecondary, size: 24),
+          Icon(Icons.info_outline, color: textSecondaryColor, size: 24),
           const SizedBox(width: 16),
           Expanded(
             child: Text(
               message,
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: AppColors.textSecondary,
+                color: textSecondaryColor,
                 fontStyle: FontStyle.italic,
               ),
             ),

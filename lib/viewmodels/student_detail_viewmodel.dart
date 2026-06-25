@@ -4,12 +4,12 @@ import 'package:student_hub/services/student_service.dart';
 import 'package:student_hub/utils/exceptions.dart';
 
 /// Student Detail ViewModel using Provider
-///
+
 /// Responsibilities:
 /// - Fetch single student by ID
 /// - Display full student details
 /// - Handle loading and error states
-///
+
 /// State properties:
 /// - student: Currently displayed student
 /// - isLoading: Show loading indicator
@@ -40,7 +40,7 @@ class StudentDetailViewModel extends ChangeNotifier {
   // ============ Public Methods ============
 
   /// Fetch student detail by ID
-  ///
+
   /// Steps:
   /// 1. Validate student ID
   /// 2. Set isLoading = true
